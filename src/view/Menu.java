@@ -25,17 +25,24 @@ public class Menu {
         ArrayList<String> operacoes = new ArrayList<>();
 
         try {
+            //Caminho do diretorio
             Path dirpath = Paths.get("C:\\Users\\Usuario\\Desktop\\CalcProjeto (1)\\CalcProjeto\\src\\model\\operation");
 
+            //Lista de arquivos do diretorio
             try(Stream<Path> filePaths = Files.list(dirpath)){
+                //Iteração por cada arquivo
                 filePaths.forEach(filePath -> {
                     try {
+                        //Variavel que abriga o arquivo iterado
                         File file = filePath.toFile();
 
+                        //Metodo Reflection para conseguir o nome do arquivo
                         Method getNameMethod = File.class.getMethod("getName");
 
+                        //Utilização do método em si
                         String fileName = getNameMethod.invoke(file).toString();
 
+                        //Tratamento da string
                         String[] nomeArquivo = fileName.split("\\.");
 
                         if(!fileName.equals("IOperation.java")){
